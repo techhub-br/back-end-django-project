@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking de Usuários</title>
+</head>
+<body>
+    <h1>Ranking de Usuários</h1>
+    <ul>
+        {% for profile in user_profiles %}
+        <h1>{{ profile.user.username }}</h1>
+        
+        {% if profile.image == "" or profile.image == null %}
+        <p>imagem não existente</p>
+        {% else %}
+        <img src="{{ profile.image.url }}">
+        {% endif %}
+
+        <ul>
+            {% if profile.site == '' or profile.site == null %}
+            {% else %}
+            <li><a href="{{ profile.site }}">Portifolio: {{ profile.user.username }}</a></li>
+            {% endif %}
+
+            <li>Github: {{ profile.github }}</li>
+
+            {% if profile.linkedin == '' or profile.linkedin == null %}
+            {% else %}
+            <li><a href="{{ profile.linkedin }}">Linkedin: {{ profile.user.username }}</a></li>
+            {% endif %}
+
+            {% if profile.instagram == '' or profile.instagram == null %}
+            {% else %}
+            <li><a href="{{ profile.instagram }}">Instagram: {{ profile.user.username }}</a></li>
+            {% endif %}
+
+            <li>Posição no Ranking: {{ profile.ranking }}</li>
+        </ul>
+        {% endfor %}
+    </ul>
+</body>
+</html>
